@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ofxFlyCapture.cpp">
+      <Filter>addons\ofxFlyCapture\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFlyCapture">
+      <UniqueIdentifier>{FEEA3362-FEC3-2FBE-664F-1094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFlyCapture\libs">
+      <UniqueIdentifier>{F7FBC128-4190-B119-FD91-B68E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFlyCapture\libs\FlyCapture2">
+      <UniqueIdentifier>{C4BBB150-D526-118A-DFE8-E35B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFlyCapture\libs\FlyCapture2\include">
+      <UniqueIdentifier>{1BF64E5D-DCFD-21F9-661C-7DA9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFlyCapture\src">
+      <UniqueIdentifier>{80ada7e1-92e7-4b3d-a276-4d0791b66d60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\AVIRecorder.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\BusManager.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\Camera.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\CameraBase.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\Error.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\FlyCapture2.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\FlyCapture2Defs.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\FlyCapture2GUI.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\FlyCapture2Platform.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\GigECamera.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\Image.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\ImageStatistics.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\PGRDirectShow.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\TopologyNode.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxFlyCapture\libs\FlyCapture2\include\Utilities.h">
+      <Filter>addons\ofxFlyCapture\libs\FlyCapture2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ofxFlyCapture.h">
+      <Filter>addons\ofxFlyCapture\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
