@@ -141,6 +141,11 @@ float ofxFlyCapture::getWidth() const {
 	return width;
 }
 
+void ofxFlyCapture::setDeviceID(int deviceID) {
+	this->deviceID = deviceID;
+	bChooseDevice = true;
+}
+
 bool ofxFlyCapture::isFrameNew() const {
 	return bIsFrameNew;
 }

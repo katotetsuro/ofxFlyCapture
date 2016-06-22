@@ -37,6 +37,15 @@ public:
 	/// \returns the video grabber's width.
 	float getWidth() const;
 
+	/// \brief Set the video grabber's device ID.
+	///
+	/// In most cases, a user can choose a specific grabber source by ID.  This
+	/// device ID information should be available to the user via the
+	/// listDevices() method.
+	///
+	/// \param deviceID The device ID provided by listDevices().
+	void setDeviceID(int deviceID);
+
 	// from ofBaseVideo
 	/// \returns true if the pixel data was updated since the last call to update().
 	bool isFrameNew() const;

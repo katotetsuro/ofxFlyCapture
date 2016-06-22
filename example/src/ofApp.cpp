@@ -7,6 +7,7 @@ void ofApp::setup(){
 		ofLogNotice() << d.deviceName << ", " << d.serialID;
 	}
 
+	vidGrabber.setDeviceID(1);
 	vidGrabber.setup(0, 0);
 }
 
