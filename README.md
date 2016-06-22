@@ -27,5 +27,6 @@ http://www.ptgrey.com/Content/Images/uploaded/FlyCapture2Help/flycapture/07legal
 
 # tested devices
 
-* Grasshopper3 GS3-U3-23S6M (mono, usb3)
-* Blackfly BFLY-PGE-13S2M (mono, gige)
+* Grasshopper3 GS3-U3-23S6M (mono, USB3)
+* Blackfly BFLY-PGE-13S2M (mono, GIGE)
+* FireFly MV FMVU-03MTM-CS (mono, USB2)
