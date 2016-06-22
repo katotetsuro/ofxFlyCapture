@@ -56,6 +56,33 @@ vector<ofVideoDevice> ofxFlyCapture::listDevices() const {
 	return devices;
 }
 
+std::tuple<int, int, ofPixelFormat> parseVideoMode(VideoMode vm) {
+	switch (vm) {
+	case VIDEOMODE_640x480RGB:
+		return make_tuple<int, int, ofPixelFormat>(640, 480, OF_PIXELS_RGB);
+	case VIDEOMODE_640x480Y8:
+		return make_tuple<int, int, ofPixelFormat>(640, 480, OF_PIXELS_GRAY);
+	case VIDEOMODE_800x600RGB:
+		return make_tuple<int, int, ofPixelFormat>(800, 600, OF_PIXELS_RGB);
+	case VIDEOMODE_800x600Y8:
+		return make_tuple<int, int, ofPixelFormat>(800, 600, OF_PIXELS_GRAY);
+	case VIDEOMODE_1024x768RGB:
+		return make_tuple<int, int, ofPixelFormat>(1024, 768, OF_PIXELS_RGB);
+	case VIDEOMODE_1024x768Y8:
+		return make_tuple<int, int, ofPixelFormat>(1024, 768, OF_PIXELS_GRAY);
+	case VIDEOMODE_1280x960RGB:
+		return make_tuple<int, int, ofPixelFormat>(1280, 960, OF_PIXELS_RGB);
+	case VIDEOMODE_1280x960Y8:
+		return make_tuple<int, int, ofPixelFormat>(1280, 960, OF_PIXELS_GRAY);
+	case VIDEOMODE_1600x1200RGB:
+		return make_tuple<int, int, ofPixelFormat>(1600, 1200, OF_PIXELS_RGB);
+	case VIDEOMODE_1600x1200Y8:
+		return make_tuple<int, int, ofPixelFormat>(1600, 1200, OF_PIXELS_GRAY);
+	default:
+		return make_tuple<int, int, ofPixelFormat>(0, 0, OF_PIXELS_GRAY);
+	}
+}
+
 bool ofxFlyCapture::setup(int w, int h) {
 	camera = make_shared<Camera>();
 	if (bChooseDevice) {
@@ -96,9 +123,10 @@ bool ofxFlyCapture::setup(int w, int h) {
 		}
 	}
 	else {
-		ofLogWarning() << "sorry currently only format7 is supported.";
-		width = height = 0;
-		pixelFormat = OF_PIXELS_GRAY;
+		auto fmt = parseVideoMode(vm);
+		width = std::get<0>(fmt);
+		height = std::get<1>(fmt);
+		pixelFormat = std::get<2>(fmt);
 	}
 
 	bGrabberInitied = camera->StartCapture() == PGRERROR_OK;
