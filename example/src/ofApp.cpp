@@ -2,23 +2,22 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	auto devices = vidGrabber.listDevices();
+	auto devices = vg.listDevices();
 	for (auto &d : devices) {
-		ofLogNotice() << d.deviceName << ", " << d.serialID;
+		ofLogNotice() << d.serialID;
 	}
-
-	vidGrabber.setDeviceID(1);
-	vidGrabber.setup(0, 0);
+	vg.setDeviceID(ofToInt(devices.begin()->serialID));
+	vg.setup(0, 0, true);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	vidGrabber.update();
+	vg.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	vidGrabber.draw(0, 0);
+	vg.draw(0, 0);
 }
 
 //--------------------------------------------------------------

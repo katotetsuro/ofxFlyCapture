@@ -83,6 +83,15 @@ public:
 	/// \brief Update the object's state.
 	void update();
 
+	// setupの後に呼ばないとダメなんだが、大丈夫か？
+	string getIPAddress() {
+		return ipAddress;
+	}
+
+	string getSerialId() {
+		return serialId;
+	}
+
 private:
 	bool bChooseDevice;
 	int deviceID;
@@ -93,9 +102,14 @@ private:
 	bool bIsFrameNew;
 	bool bGrabberInitied;
 	ofPixels pixels;
+
+	string ipAddress;
+	string serialId;
 };
 
 class ofxFlyCaptureGrabber : public ofVideoGrabber {
 public:
 	ofxFlyCaptureGrabber();
+
+	string getSerialId() const;
 };
