@@ -95,6 +95,7 @@ public:
 	}
 
 private:
+	float lastTimeFrameReceived;
 	bool bChooseDevice;
 	int deviceID;
 	shared_ptr<class FlyCapture2::Camera> camera;

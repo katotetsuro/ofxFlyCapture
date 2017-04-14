@@ -27,6 +27,7 @@ void ofxFlyCapture::onNewFrame(FlyCapture2::Image *pImage) {
 		buffer.setFromPixels(pImage->GetData(), width, height, pixelFormat);
 	}
 	bIsFrameNew = true;
+	lastTimeFrameReceived = ofGetElapsedTimef();
 	mutex.unlock();
 }
 
@@ -35,7 +36,8 @@ ofxFlyCapture::ofxFlyCapture() :
 	bGrabberInitied(false),
 	ipAddress(""),
 	serialId(""),
-	bIsFrameNew(false)
+	bIsFrameNew(false),
+	lastTimeFrameReceived(0)
 {
 }
 
@@ -237,6 +239,9 @@ void ofxFlyCapture::update() {
 	mutex.lock();
 	pixels = buffer;
 	mutex.unlock();
+	if (lastTimeFrameReceived > 0) {
+		bIsFrameNew = ofGetElapsedTimef() - lastTimeFrameReceived < 1.f;
+	}
 
 	//FlyCapture2::Image tmpBuffer;
 	//Error e = camera->RetrieveBuffer(&tmpBuffer);
