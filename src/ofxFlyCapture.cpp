@@ -3,11 +3,39 @@
 
 using namespace FlyCapture2;
 
+// This function isn't a member function of Class FlyCapture
+void onNewFrameReceived(FlyCapture2::Image *pImage, const void *instance) {
+	auto p = (ofxFlyCapture*)instance;
+	p->onNewFrame(pImage);
+}
+
+void ofxFlyCapture::onNewFrame(FlyCapture2::Image *pImage) {
+	mutex.lock();
+	if (!buffer.isAllocated()
+		|| buffer.getWidth() != width
+		|| buffer.getHeight() != height
+		|| buffer.getPixelFormat() != pixelFormat) {
+		buffer.allocate(width, height, pixelFormat);
+	}
+
+	if (pixelFormat == OF_PIXELS_RGB) {
+		FlyCapture2::Image rgb;
+		pImage->Convert(FlyCapture2::PIXEL_FORMAT_RGB, &rgb);
+		buffer.setFromPixels(rgb.GetData(), width, height, pixelFormat);
+	}
+	else {
+		buffer.setFromPixels(pImage->GetData(), width, height, pixelFormat);
+	}
+	bIsFrameNew = true;
+	mutex.unlock();
+}
+
 ofxFlyCapture::ofxFlyCapture() : 
 	bChooseDevice(false),
 	bGrabberInitied(false),
 	ipAddress(""),
-	serialId("")
+	serialId(""),
+	bIsFrameNew(false)
 {
 }
 
@@ -144,7 +172,8 @@ bool ofxFlyCapture::setup(int w, int h) {
 	ipAddress = ss.str();
 	serialId = ofToString(ci.serialNumber);
 
-	bGrabberInitied = camera->StartCapture() == PGRERROR_OK;
+//	bGrabberInitied = camera->StartCapture() == PGRERROR_OK;
+	bGrabberInitied = camera->StartCapture(&onNewFrameReceived, this) == PGRERROR_OK;
 	return bGrabberInitied;
 }
 
@@ -205,30 +234,34 @@ void ofxFlyCapture::update() {
 		return;
 	}
 
-	FlyCapture2::Image tmpBuffer;
-	Error e = camera->RetrieveBuffer(&tmpBuffer);
-	if (e != PGRERROR_OK) {
-		//ofLogError() << e.GetDescription();
-		bIsFrameNew = false;
-	}
-	else {
-		if (!pixels.isAllocated()
-			|| pixels.getWidth() != width
-			|| pixels.getHeight() != height
-			|| pixels.getPixelFormat() != pixelFormat) {
-			pixels.allocate(width, height, pixelFormat);
-		}
+	mutex.lock();
+	pixels = buffer;
+	mutex.unlock();
 
-		if (pixelFormat == OF_PIXELS_RGB) {
-			FlyCapture2::Image rgb;
-			tmpBuffer.Convert(FlyCapture2::PIXEL_FORMAT_RGB, &rgb);
-			pixels.setFromPixels(rgb.GetData(), width, height, pixelFormat);
-		}
-		else {
-			pixels.setFromPixels(tmpBuffer.GetData(), width, height, pixelFormat);
-		}
-		bIsFrameNew = true;
-	}
+	//FlyCapture2::Image tmpBuffer;
+	//Error e = camera->RetrieveBuffer(&tmpBuffer);
+	//if (e != PGRERROR_OK) {
+	//	//ofLogError() << e.GetDescription();
+	//	bIsFrameNew = false;
+	//}
+	//else {
+	//	if (!pixels.isAllocated()
+	//		|| pixels.getWidth() != width
+	//		|| pixels.getHeight() != height
+	//		|| pixels.getPixelFormat() != pixelFormat) {
+	//		pixels.allocate(width, height, pixelFormat);
+	//	}
+
+	//	if (pixelFormat == OF_PIXELS_RGB) {
+	//		FlyCapture2::Image rgb;
+	//		tmpBuffer.Convert(FlyCapture2::PIXEL_FORMAT_RGB, &rgb);
+	//		pixels.setFromPixels(rgb.GetData(), width, height, pixelFormat);
+	//	}
+	//	else {
+	//		pixels.setFromPixels(tmpBuffer.GetData(), width, height, pixelFormat);
+	//	}
+	//	bIsFrameNew = true;
+	//}
 }
 
 ofxFlyCaptureGrabber::ofxFlyCaptureGrabber() {

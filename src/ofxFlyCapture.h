@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofVideoGrabber.h"
+#include "Camera.h"
 
 namespace FlyCapture2 {
 	class Camera;
@@ -9,6 +10,7 @@ namespace FlyCapture2 {
 class ofxFlyCapture : public ofBaseVideoGrabber
 {
 public:
+	void onNewFrame(FlyCapture2::Image *pImage);
 	ofxFlyCapture();
 	virtual ~ofxFlyCapture();
 
@@ -105,6 +107,8 @@ private:
 
 	string ipAddress;
 	string serialId;
+	ofMutex mutex;
+	ofPixels buffer;
 };
 
 class ofxFlyCaptureGrabber : public ofVideoGrabber {
