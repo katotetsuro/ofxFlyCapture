@@ -2,6 +2,7 @@
 
 #include "ofVideoGrabber.h"
 #include "Camera.h"
+#include "ofTypes.h"
 
 namespace FlyCapture2 {
 	class Camera;
@@ -17,7 +18,7 @@ public:
 	// from ofBaseVideoGrabber
 	/// \brief Get a list of available video grabber devices.
 	/// \returns a std::vector of ofVideoDevice objects.
-	vector<ofVideoDevice>	listDevices() const;
+	std::vector<ofVideoDevice>	listDevices() const;
 
 	/// \brief Set up the grabber with the requested width and height.
 	///
@@ -86,11 +87,11 @@ public:
 	void update();
 
 	// setupの後に呼ばないとダメなんだが、大丈夫か？
-	string getIPAddress() {
+	std::string getIPAddress() {
 		return ipAddress;
 	}
 
-	string getSerialId() {
+	std::string getSerialId() {
 		return serialId;
 	}
 
@@ -98,7 +99,7 @@ private:
 	float lastTimeFrameReceived;
 	bool bChooseDevice;
 	int deviceID;
-	shared_ptr<class FlyCapture2::Camera> camera;
+	std::shared_ptr<class FlyCapture2::Camera> camera;
 	int width;
 	int height;
 	ofPixelFormat pixelFormat;
@@ -106,8 +107,8 @@ private:
 	bool bGrabberInitied;
 	ofPixels pixels;
 
-	string ipAddress;
-	string serialId;
+	std::string ipAddress;
+	std::string serialId;
 	ofMutex mutex;
 	ofPixels buffer;
 };
@@ -116,5 +117,5 @@ class ofxFlyCaptureGrabber : public ofVideoGrabber {
 public:
 	ofxFlyCaptureGrabber();
 
-	string getSerialId() const;
+	std::string getSerialId() const;
 };

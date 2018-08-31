@@ -2,6 +2,7 @@
 #include "FlyCapture2.h"
 
 using namespace FlyCapture2;
+using namespace std;
 
 // This function isn't a member function of Class FlyCapture
 void onNewFrameReceived(FlyCapture2::Image *pImage, const void *instance) {
