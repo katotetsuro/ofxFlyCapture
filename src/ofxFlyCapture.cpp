@@ -153,6 +153,7 @@ bool ofxFlyCapture::isFrameNew() const {
 void ofxFlyCapture::close() {
 	if (camera != nullptr) {
 		camera->Disconnect();
+		camera.reset();
 	}
 }
 
